@@ -103,6 +103,7 @@ export interface BaseButtonProps {
   danger?: boolean;
   block?: boolean;
   children?: React.ReactNode;
+  color?: string;
 }
 
 // Typescript will make optional not optional if use Pick with union.
@@ -144,6 +145,7 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
     icon,
     ghost = false,
     block = false,
+    color,
     /** If we extract items here, we don't need use omit.js */
     // React does not recognize the `htmlType` prop on a DOM element. Here we pick it out of `rest`.
     htmlType = 'button' as ButtonProps['htmlType'],
@@ -283,6 +285,7 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
       className={classes}
       onClick={handleClick}
       ref={buttonRef}
+      style={color ? { background: color, borderColor: color } : undefined}
     >
       {iconNode}
       {kids}
